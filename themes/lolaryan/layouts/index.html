@@ -3,28 +3,76 @@
   <!-- Hero section — full-width, bg-section, centered text, large H1, subheading, CTA -->
   <section class="hero">
     <div class="container">
-      <!-- Phase 3: H1 headline, subheading paragraph, and CTA button go here -->
+      <h1>You Deserve to Feel Like Yourself Again</h1>
+      <p>Therapy for caring professionals, college students, and immigrant communities in Oregon.</p>
+      <a href="{{ "/contact/" | relURL }}" class="btn btn-primary">Book a Free Consultation</a>
     </div>
   </section>
 
   <!-- Services teaser — three-column grid, white background -->
   <section class="services-teaser">
     <div class="container">
-      <!-- Phase 3: Three service cards go here -->
+
+      <div class="service-card">
+        <div class="service-card__icon" aria-hidden="true">&#9675;</div>
+        <h3>Caring Professionals</h3>
+        <p>If you give everything to your work and your people, there's often nothing left for you. Therapy can help you find balance without abandoning what matters.</p>
+        <a href="{{ "/services/" | relURL }}" class="text-link">Learn more</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card__icon" aria-hidden="true">&#9675;</div>
+        <h3>College Students &amp; Life Transitions</h3>
+        <p>Big changes bring big feelings. Whether you're navigating identity, pressure, or an uncertain future, you don't have to figure it out alone.</p>
+        <a href="{{ "/services/" | relURL }}" class="text-link">Learn more</a>
+      </div>
+
+      <div class="service-card">
+        <div class="service-card__icon" aria-hidden="true">&#9675;</div>
+        <h3>Immigrant Communities</h3>
+        <p>Building a life in a new country means carrying a lot — in two languages, across two worlds. This is a space that understands that.</p>
+        <a href="{{ "/services/" | relURL }}" class="text-link">Learn more</a>
+      </div>
+
     </div>
   </section>
 
   <!-- Immigration evaluations callout — sage-light background, text + CTA -->
   <section class="evaluations-callout">
     <div class="container">
-      <!-- Phase 3: Brief callout text and CTA button go here -->
+      <h2>Immigration Psychological Evaluations</h2>
+      <p>Psychological evaluations for hardship, asylum, VAWA, and U/T visa cases. Detailed clinical reports prepared for immigration attorneys and their clients.</p>
+      <a href="{{ "/immigration-evaluations/" | relURL }}" class="btn btn-secondary">Learn More</a>
     </div>
   </section>
 
   <!-- Blog preview — three-column post card grid, bg-section background -->
   <section class="blog-preview">
     <div class="container">
-      <!-- Phase 3: Three latest post cards go here -->
+
+      <div class="blog-preview__intro">
+        <h2>From the Blog</h2>
+      </div>
+
+      {{ $blogPosts := where .Site.RegularPages "Section" "blog" }}
+      {{ range first 3 $blogPosts }}
+        <article class="post-card">
+          <p class="post-card__date">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          </p>
+          <h3 class="post-card__title">
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </h3>
+          {{ with .Summary }}
+            <p class="post-card__summary">{{ . }}</p>
+          {{ end }}
+        </article>
+      {{ end }}
+
+      <div class="blog-preview__footer">
+        <a href="{{ "/blog/" | relURL }}" class="text-link">View All Posts</a>
+      </div>
+
     </div>
   </section>
 
