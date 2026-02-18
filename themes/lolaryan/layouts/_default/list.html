@@ -1,11 +1,31 @@
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
-  {{ if .Pages }}
-  <ul>
-    {{ range .Pages }}
-    <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-    {{ end }}
-  </ul>
-  {{ end }}
+  <div class="blog-list">
+    <div class="container">
+      <h1>{{ .Title }}</h1>
+
+      {{ with .Content }}
+        <div class="prose">{{ . }}</div>
+      {{ end }}
+
+      {{ if .Pages }}
+        <div class="post-cards">
+          {{ range .Pages }}
+            <article class="post-card">
+              <p class="post-card__date">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">
+                  {{ .Date.Format "January 2, 2006" }}
+                </time>
+              </p>
+              <h2 class="post-card__title">
+                <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+              </h2>
+              {{ with .Summary }}
+                <p class="post-card__summary">{{ . }}</p>
+              {{ end }}
+            </article>
+          {{ end }}
+        </div>
+      {{ end }}
+    </div>
+  </div>
 {{ end }}
