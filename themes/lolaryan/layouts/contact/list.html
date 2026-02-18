@@ -1,0 +1,78 @@
+{{ define "main" }}
+
+  <!-- Page header -->
+  <section class="contact-header">
+    <div class="container">
+      <h1>Booking</h1>
+      <p>Schedule a free 15-minute consultation to see if we're a good fit. No commitment required.</p>
+    </div>
+  </section>
+
+  <!-- Section 1: Schedule Online -->
+  <section class="contact-section">
+    <div class="container">
+      <h2>Schedule Online</h2>
+      <!-- SCHEDULING EMBED: Replace this block with SimplePractice or Calendly embed code -->
+      <div class="scheduling-placeholder">
+        <p>Online scheduling coming soon. In the meantime, please use the contact form below.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Contact Form -->
+  <section class="contact-section contact-section--alt">
+    <div class="container">
+      <h2>Or Send a Message</h2>
+
+      <!-- Form submission handler to be configured — consider Netlify Forms, Formspree, or similar static form service -->
+      <form class="contact-form" action="#" method="POST">
+
+        <div class="form-group">
+          <label for="name">Name <span class="form-required" aria-hidden="true">*</span></label>
+          <input type="text" id="name" name="name" required autocomplete="name" placeholder="Your full name">
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email <span class="form-required" aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="email" placeholder="your@email.com">
+        </div>
+
+        <div class="form-group">
+          <label for="reason">Reason for reaching out <span class="form-required" aria-hidden="true">*</span></label>
+          <select id="reason" name="reason" required>
+            <option value="" disabled selected>Select one&hellip;</option>
+            <option value="general">General Inquiry</option>
+            <option value="therapy">Starting Therapy</option>
+            <option value="evaluation">Immigration Evaluation Referral</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Message <span class="form-required" aria-hidden="true">*</span></label>
+          <textarea id="message" name="message" rows="6" required placeholder="Tell me a little about what's bringing you here, or ask any questions you have."></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </div>
+
+      </form>
+
+      <p class="contact-form-note">Lola typically responds within two business days. For urgent mental health needs, please contact the <strong>988 Suicide &amp; Crisis Lifeline</strong> by calling or texting <strong>988</strong>.</p>
+    </div>
+  </section>
+
+  <!-- Section 3: Direct Contact -->
+  <section class="contact-section">
+    <div class="container">
+      <h2>Direct Contact</h2>
+      <p>Prefer to reach out directly? You're welcome to email.</p>
+      <div class="contact-details">
+        <p><strong>Email:</strong> <a href="mailto:contact@lolaryanlcsw.com" class="text-link">contact@lolaryanlcsw.com</a></p>
+        <p><strong>Location:</strong> Telehealth only — serving clients throughout Oregon</p>
+      </div>
+    </div>
+  </section>
+
+{{ end }}
