@@ -1,1 +1,672 @@
-/* Main stylesheet — placeholder for Phase 1 */
+/* =============================================================================
+   1. GOOGLE FONTS
+   Loaded via <link> in baseof.html for better performance.
+   Families: Lato (400, 400i, 700), Playfair Display (600, 700)
+============================================================================= */
+
+/* =============================================================================
+   2. CSS CUSTOM PROPERTIES
+============================================================================= */
+:root {
+  --color-charcoal:     #3d3b38;
+  --color-charcoal-mid: #5a5754;
+  --color-sage-dark:    #6b8f71;
+  --color-sage-mid:     #8faa8b;
+  --color-sage-light:   #c5d4b5;
+  --color-bg:           #f7f4f0;
+  --color-bg-section:   #edeae4;
+  --color-white:        #ffffff;
+
+  --font-body:    "Lato", "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Playfair Display", Georgia, serif;
+
+  --max-width: 900px;
+  --section-padding: 80px;
+  --header-height: 72px;
+}
+
+/* =============================================================================
+   3. CSS RESET / BASE STYLES
+============================================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--color-charcoal);
+  background-color: var(--color-bg);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: var(--color-sage-dark);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* =============================================================================
+   4. TYPOGRAPHY
+============================================================================= */
+h1,
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--color-charcoal);
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-body);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-charcoal);
+}
+
+h1 { font-size: clamp(2rem, 4vw, 2.75rem); }
+h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.1rem; }
+
+p {
+  margin-bottom: 1.2em;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* =============================================================================
+   5. LAYOUT UTILITIES
+============================================================================= */
+.container {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.section {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}
+
+/* Wide container for full-bleed sections */
+.container--wide {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+/* =============================================================================
+   6. HEADER & NAV
+============================================================================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-sage-light);
+}
+
+.header-inner {
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  gap: 24px;
+}
+
+.site-logo img {
+  height: 52px;
+  width: auto;
+}
+
+/* Nav list */
+.primary-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: nowrap;
+}
+
+.nav-list li > a {
+  display: block;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.nav-list li > a:hover {
+  color: var(--color-sage-dark);
+  text-decoration: none;
+}
+
+.nav-list li > a:focus-visible {
+  outline: 2px solid var(--color-sage-dark);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* CTA button in nav */
+.nav-cta {
+  margin-left: 8px;
+}
+
+/* Hamburger toggle — hidden on desktop */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--color-sage-dark);
+  outline-offset: 2px;
+}
+
+.hamburger-bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-charcoal);
+  border-radius: 2px;
+  transition: background-color 0.2s;
+}
+
+.nav-toggle:hover .hamburger-bar {
+  background-color: var(--color-sage-dark);
+}
+
+/* =============================================================================
+   7. FOOTER
+============================================================================= */
+.site-footer {
+  background-color: var(--color-charcoal);
+  color: var(--color-bg);
+}
+
+.footer-grid {
+  max-width: 1200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
+  padding-top: 60px;
+  padding-bottom: 48px;
+}
+
+.footer-col h3 {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-sage-light);
+  margin-bottom: 16px;
+}
+
+.footer-name {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-bg);
+  margin-bottom: 8px;
+}
+
+.footer-tagline {
+  font-size: 0.9rem;
+  color: var(--color-sage-light);
+}
+
+.footer-links ul,
+.footer-contact ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-links a,
+.footer-contact a {
+  font-size: 0.95rem;
+  color: var(--color-bg);
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.footer-links a:focus-visible,
+.footer-contact a:focus-visible {
+  outline: 2px solid var(--color-sage-light);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.footer-contact li {
+  font-size: 0.95rem;
+  color: var(--color-bg);
+  opacity: 0.85;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.footer-bottom .container {
+  max-width: 1200px;
+}
+
+.footer-bottom p {
+  font-size: 0.85rem;
+  color: var(--color-bg);
+  opacity: 0.6;
+  margin-bottom: 0;
+}
+
+/* =============================================================================
+   8. BUTTONS & LINKS
+============================================================================= */
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+
+.btn:hover {
+  text-decoration: none;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-sage-dark);
+  outline-offset: 3px;
+}
+
+/* Primary button */
+.btn-primary {
+  background-color: var(--color-sage-dark);
+  color: var(--color-white);
+  border-color: var(--color-sage-dark);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-sage-mid);
+  border-color: var(--color-sage-mid);
+  color: var(--color-white);
+}
+
+/* Secondary / outline button */
+.btn-secondary {
+  background-color: transparent;
+  color: var(--color-sage-dark);
+  border-color: var(--color-sage-dark);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-sage-dark);
+  color: var(--color-white);
+}
+
+/* Inline text links */
+.text-link {
+  color: var(--color-sage-dark);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.text-link:hover {
+  border-bottom-color: var(--color-sage-dark);
+  text-decoration: none;
+}
+
+/* =============================================================================
+   9. HOME PAGE SECTIONS
+============================================================================= */
+
+/* Hero */
+.hero {
+  background-color: var(--color-bg-section);
+  padding: var(--section-padding) 24px;
+  text-align: center;
+}
+
+.hero .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  max-width: 700px;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  max-width: 560px;
+  color: var(--color-charcoal-mid);
+  margin-bottom: 0;
+}
+
+/* Services teaser */
+.services-teaser {
+  background-color: var(--color-white);
+  padding: var(--section-padding) 24px;
+}
+
+.services-teaser .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+/* Evaluations callout */
+.evaluations-callout {
+  background-color: var(--color-sage-light);
+  padding: var(--section-padding) 24px;
+  text-align: center;
+}
+
+.evaluations-callout .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Blog preview */
+.blog-preview {
+  background-color: var(--color-bg-section);
+  padding: var(--section-padding) 24px;
+}
+
+.blog-preview .container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+/* =============================================================================
+   10. BLOG LIST & POST CARDS
+============================================================================= */
+.blog-list {
+  padding: var(--section-padding) 24px;
+}
+
+.blog-list h1 {
+  margin-bottom: 48px;
+}
+
+.post-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 32px;
+}
+
+.post-card {
+  border-top: 2px solid var(--color-sage-light);
+  padding-top: 24px;
+}
+
+.post-card__date {
+  font-size: 0.85rem;
+  color: var(--color-charcoal-mid);
+  margin-bottom: 8px;
+}
+
+.post-card__title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.post-card__title a {
+  color: var(--color-charcoal);
+  transition: color 0.2s;
+}
+
+.post-card__title a:hover {
+  color: var(--color-sage-dark);
+  text-decoration: none;
+}
+
+.post-card__title a:focus-visible {
+  outline: 2px solid var(--color-sage-dark);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.post-card__summary {
+  font-size: 0.95rem;
+  color: var(--color-charcoal-mid);
+  margin-bottom: 0;
+}
+
+/* Single post */
+.single-post {
+  padding: var(--section-padding) 24px;
+}
+
+.single-post h1 {
+  margin-bottom: 12px;
+}
+
+.single-post .post-meta {
+  font-size: 0.9rem;
+  color: var(--color-charcoal-mid);
+  margin-bottom: 40px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--color-sage-light);
+}
+
+.single-post .post-content h2,
+.single-post .post-content h3 {
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+
+.single-post .post-content ul,
+.single-post .post-content ol {
+  padding-left: 1.5em;
+  list-style: disc;
+  margin-bottom: 1.2em;
+}
+
+.single-post .post-content ol {
+  list-style: decimal;
+}
+
+/* Generic single page */
+.page-content {
+  padding: var(--section-padding) 24px;
+}
+
+.page-content h1 {
+  margin-bottom: 32px;
+}
+
+.page-content h2 {
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+}
+
+.page-content ul,
+.page-content ol {
+  padding-left: 1.5em;
+  list-style: disc;
+  margin-bottom: 1.2em;
+}
+
+.page-content ol {
+  list-style: decimal;
+}
+
+/* =============================================================================
+   11. RESPONSIVE / MOBILE STYLES
+============================================================================= */
+@media (max-width: 900px) {
+  :root {
+    --section-padding: 60px;
+  }
+
+  /* Footer grid → two columns */
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+  }
+
+  /* Home page grids → single column */
+  .services-teaser .container,
+  .blog-preview .container {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Show hamburger, hide nav by default */
+  .nav-toggle {
+    display: flex;
+  }
+
+  .primary-nav {
+    display: none;
+    position: absolute;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background-color: var(--color-white);
+    border-bottom: 1px solid var(--color-sage-light);
+    padding: 16px 0;
+    z-index: 99;
+  }
+
+  .primary-nav.nav-open {
+    display: block;
+  }
+
+  .nav-list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 0 24px;
+  }
+
+  .nav-list li {
+    width: 100%;
+    border-bottom: 1px solid var(--color-bg-section);
+  }
+
+  .nav-list li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-list li > a {
+    padding: 12px 0;
+    width: 100%;
+  }
+
+  .nav-cta {
+    margin-left: 0;
+    padding: 12px 0;
+  }
+
+  .nav-cta .btn {
+    display: inline-block;
+    margin-top: 4px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 60px 24px;
+  }
+
+  /* Post cards → single column */
+  .post-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  :root {
+    --section-padding: 48px;
+  }
+
+  /* Footer grid → single column */
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .footer-brand {
+    grid-column: auto;
+  }
+}
