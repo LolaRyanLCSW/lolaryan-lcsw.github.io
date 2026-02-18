@@ -1,6 +1,5 @@
 ---
-title: "Telehealth"
+title: "Telehealth Therapy"
+description: "Secure, convenient online therapy for Oregon residents."
 draft: false
 ---
-
-Details about telehealth therapy sessions — content coming soon.
