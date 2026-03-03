@@ -8,14 +8,14 @@
    2. CSS CUSTOM PROPERTIES
 ============================================================================= */
 :root {
-  --color-charcoal:     #3d3b38;
-  --color-charcoal-mid: #5a5754;
-  --color-sage-dark:    #6b8f71;
-  --color-sage-mid:     #8faa8b;
-  --color-sage-light:   #c5d4b5;
-  --color-bg:           #f7f4f0;
-  --color-bg-section:   #edeae4;
-  --color-white:        #ffffff;
+  --color-charcoal:       #2c2825;
+  --color-charcoal-mid:   #5c5048;
+  --color-accent:         #b5674d;
+  --color-accent-mid:     #c98b73;
+  --color-accent-light:   #e8d0c3;
+  --color-bg:             #faf8f4;
+  --color-bg-section:     #f2ede6;
+  --color-white:          #ffffff;
 
   --font-body:    "Lato", "Helvetica Neue", Arial, sans-serif;
   --font-heading: "Playfair Display", Georgia, serif;
@@ -59,7 +59,7 @@ ul {
 }
 
 a {
-  color: var(--color-sage-dark);
+  color: var(--color-accent);
   text-decoration: none;
 }
 
@@ -134,7 +134,7 @@ p:last-child {
   top: 0;
   z-index: 100;
   background-color: var(--color-white);
-  border-bottom: 1px solid var(--color-sage-light);
+  border-bottom: 1px solid var(--color-accent-light);
 }
 
 .header-inner {
@@ -175,12 +175,12 @@ p:last-child {
 }
 
 .nav-list li > a:hover {
-  color: var(--color-sage-dark);
+  color: var(--color-accent);
   text-decoration: none;
 }
 
 .nav-list li > a:focus-visible {
-  outline: 2px solid var(--color-sage-dark);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -207,7 +207,7 @@ p:last-child {
 }
 
 .nav-toggle:focus-visible {
-  outline: 2px solid var(--color-sage-dark);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
 }
 
@@ -221,7 +221,96 @@ p:last-child {
 }
 
 .nav-toggle:hover .hamburger-bar {
-  background-color: var(--color-sage-dark);
+  background-color: var(--color-accent);
+}
+
+/* Nav label (non-link parent, e.g. "Resources") */
+.nav-label {
+  display: block;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-charcoal);
+  white-space: nowrap;
+  cursor: default;
+  user-select: none;
+}
+
+/* Dropdown: parent list item */
+.nav-item--has-children {
+  position: relative;
+}
+
+/* Dropdown toggle button — hidden on desktop, shown on mobile */
+.dropdown-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-charcoal);
+  padding: 0;
+  line-height: 1;
+  font-size: 1rem;
+}
+
+.dropdown-toggle:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Dropdown menu panel */
+.nav-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 180px;
+  background: var(--color-white);
+  border: 1px solid var(--color-accent-light);
+  border-top: 2px solid var(--color-accent);
+  box-shadow: 0 6px 16px rgba(44, 40, 37, 0.1);
+  z-index: 200;
+  padding: 6px 0;
+  list-style: none;
+}
+
+/* Show on hover (desktop) or when .dropdown-open is set (JS) */
+.nav-item--has-children:hover > .nav-dropdown,
+.nav-item--has-children.dropdown-open > .nav-dropdown {
+  display: block;
+}
+
+.nav-dropdown li {
+  border-bottom: none;
+  width: auto;
+}
+
+.nav-dropdown a {
+  display: block;
+  padding: 9px 18px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--color-charcoal);
+  white-space: nowrap;
+  transition: color 0.15s, background-color 0.15s;
+}
+
+.nav-dropdown a:hover {
+  color: var(--color-accent);
+  background-color: var(--color-bg);
+  text-decoration: none;
+}
+
+/* Chevron indicator on desktop parent items */
+@media (min-width: 769px) {
+  .nav-item--has-children > a::after,
+  .nav-label::after {
+    content: " ▾";
+    font-size: 0.65em;
+    vertical-align: middle;
+    opacity: 0.7;
+  }
 }
 
 /* =============================================================================
@@ -247,7 +336,7 @@ p:last-child {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--color-sage-light);
+  color: var(--color-accent-light);
   margin-bottom: 16px;
 }
 
@@ -261,7 +350,7 @@ p:last-child {
 
 .footer-tagline {
   font-size: 0.9rem;
-  color: var(--color-sage-light);
+  color: var(--color-accent-light);
 }
 
 .footer-links ul,
@@ -287,7 +376,7 @@ p:last-child {
 
 .footer-links a:focus-visible,
 .footer-contact a:focus-visible {
-  outline: 2px solid var(--color-sage-light);
+  outline: 2px solid var(--color-accent-light);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -339,45 +428,45 @@ p:last-child {
 }
 
 .btn:focus-visible {
-  outline: 3px solid var(--color-sage-dark);
+  outline: 3px solid var(--color-accent);
   outline-offset: 3px;
 }
 
 /* Primary button */
 .btn-primary {
-  background-color: var(--color-sage-dark);
+  background-color: var(--color-accent);
   color: var(--color-white);
-  border-color: var(--color-sage-dark);
+  border-color: var(--color-accent);
 }
 
 .btn-primary:hover {
-  background-color: var(--color-sage-mid);
-  border-color: var(--color-sage-mid);
+  background-color: var(--color-accent-mid);
+  border-color: var(--color-accent-mid);
   color: var(--color-white);
 }
 
 /* Secondary / outline button */
 .btn-secondary {
   background-color: transparent;
-  color: var(--color-sage-dark);
-  border-color: var(--color-sage-dark);
+  color: var(--color-accent);
+  border-color: var(--color-accent);
 }
 
 .btn-secondary:hover {
-  background-color: var(--color-sage-dark);
+  background-color: var(--color-accent);
   color: var(--color-white);
 }
 
 /* Inline text links */
 .text-link {
-  color: var(--color-sage-dark);
+  color: var(--color-accent);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s;
 }
 
 .text-link:hover {
-  border-bottom-color: var(--color-sage-dark);
+  border-bottom-color: var(--color-accent);
   text-decoration: none;
 }
 
@@ -411,21 +500,44 @@ p:last-child {
   margin-bottom: 0;
 }
 
-/* Services teaser */
-.services-teaser {
+/* Services flowing layout */
+.services-flow {
   background-color: var(--color-white);
   padding: var(--section-padding) 24px;
 }
 
-.services-teaser .container {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+.services-flow .container {
+  max-width: 680px;
+}
+
+.service-entry {
+  padding: 44px 0;
+  border-bottom: 1px solid var(--color-accent-light);
+}
+
+.service-entry:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.service-entry h3 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-charcoal);
+  margin-bottom: 14px;
+}
+
+.service-entry p {
+  font-size: 1.05rem;
+  color: var(--color-charcoal-mid);
+  line-height: 1.75;
+  margin-bottom: 16px;
 }
 
 /* Evaluations callout */
 .evaluations-callout {
-  background-color: var(--color-sage-light);
+  background-color: var(--color-accent-light);
   padding: var(--section-padding) 24px;
   text-align: center;
 }
@@ -467,7 +579,7 @@ p:last-child {
 }
 
 .post-card {
-  border-top: 2px solid var(--color-sage-light);
+  border-top: 2px solid var(--color-accent-light);
   padding-top: 24px;
 }
 
@@ -490,12 +602,12 @@ p:last-child {
 }
 
 .post-card__title a:hover {
-  color: var(--color-sage-dark);
+  color: var(--color-accent);
   text-decoration: none;
 }
 
 .post-card__title a:focus-visible {
-  outline: 2px solid var(--color-sage-dark);
+  outline: 2px solid var(--color-accent);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -520,7 +632,7 @@ p:last-child {
   color: var(--color-charcoal-mid);
   margin-bottom: 40px;
   padding-bottom: 32px;
-  border-bottom: 1px solid var(--color-sage-light);
+  border-bottom: 1px solid var(--color-accent-light);
 }
 
 .single-post .post-content h2,
@@ -572,7 +684,7 @@ p:last-child {
 /* Service cards inside the three-column teaser grid */
 .service-card__icon {
   font-size: 2rem;
-  color: var(--color-sage-mid);
+  color: var(--color-accent-mid);
   margin-bottom: 12px;
   line-height: 1;
 }
@@ -722,7 +834,7 @@ p:last-child {
 /* Page header — sage-light background */
 .imm-header {
   padding: var(--section-padding) 24px;
-  background-color: var(--color-sage-light);
+  background-color: var(--color-accent-light);
   text-align: center;
 }
 
@@ -748,7 +860,7 @@ p:last-child {
 .imm-section {
   padding: var(--section-padding) 24px;
   background-color: var(--color-white);
-  border-top: 1px solid var(--color-sage-light);
+  border-top: 1px solid var(--color-accent-light);
 }
 
 .imm-section h2 {
@@ -769,7 +881,7 @@ p:last-child {
 
 .eval-type {
   padding-left: 20px;
-  border-left: 3px solid var(--color-sage-light);
+  border-left: 3px solid var(--color-accent-light);
 }
 
 .eval-type h3 {
@@ -800,7 +912,7 @@ p:last-child {
   flex-shrink: 0;
   width: 40px;
   height: 40px;
-  background-color: var(--color-sage-light);
+  background-color: var(--color-accent-light);
   color: var(--color-charcoal);
   font-family: var(--font-heading);
   font-size: 1.1rem;
@@ -840,7 +952,7 @@ p:last-child {
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--color-sage-dark);
+  color: var(--color-accent);
   font-weight: 700;
 }
 
@@ -849,7 +961,7 @@ p:last-child {
   margin-top: 24px;
   padding: 20px 24px;
   background-color: var(--color-bg-section);
-  border-left: 3px solid var(--color-sage-mid);
+  border-left: 3px solid var(--color-accent-mid);
   display: inline-block;
 }
 
@@ -866,9 +978,9 @@ p:last-child {
 /* CTA section — centered, sage-light background */
 .imm-cta {
   padding: var(--section-padding) 24px;
-  background-color: var(--color-sage-light);
+  background-color: var(--color-accent-light);
   text-align: center;
-  border-top: 1px solid var(--color-sage-light);
+  border-top: 1px solid var(--color-accent-light);
 }
 
 .imm-cta .container {
@@ -962,7 +1074,7 @@ p:last-child {
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--color-sage-dark);
+  color: var(--color-accent);
   font-weight: 700;
 }
 
@@ -1052,7 +1164,7 @@ p:last-child {
   content: "—";
   position: absolute;
   left: 0;
-  color: var(--color-sage-dark);
+  color: var(--color-accent);
   font-weight: 700;
 }
 
@@ -1122,7 +1234,7 @@ p:last-child {
 /* Scheduling placeholder */
 .scheduling-placeholder {
   background-color: var(--color-bg-section);
-  border: 2px dashed var(--color-sage-light);
+  border: 2px dashed var(--color-accent-light);
   border-radius: 4px;
   padding: 48px 32px;
   text-align: center;
@@ -1155,7 +1267,7 @@ p:last-child {
 }
 
 .form-required {
-  color: var(--color-sage-dark);
+  color: var(--color-accent);
   margin-left: 2px;
 }
 
@@ -1173,7 +1285,7 @@ p:last-child {
   font-size: 1rem;
   color: var(--color-charcoal);
   background-color: var(--color-white);
-  border: 1px solid var(--color-sage-light);
+  border: 1px solid var(--color-accent-light);
   border-radius: 4px;
   padding: 10px 14px;
   width: 100%;
@@ -1186,12 +1298,12 @@ p:last-child {
 .contact-form select:focus,
 .contact-form textarea:focus {
   outline: none;
-  border-color: var(--color-sage-dark);
-  box-shadow: 0 0 0 3px rgba(107, 143, 113, 0.18);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(181, 103, 77, 0.18);
 }
 
 .contact-form select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%236b8f71' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23b5674d' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 36px;
@@ -1212,7 +1324,7 @@ p:last-child {
   max-width: 600px;
   font-size: 0.92rem;
   color: var(--color-charcoal-mid);
-  border-left: 3px solid var(--color-sage-light);
+  border-left: 3px solid var(--color-accent-light);
   padding-left: 16px;
 }
 
@@ -1221,7 +1333,7 @@ p:last-child {
   margin-top: 8px;
   padding: 24px 28px;
   background-color: var(--color-bg-section);
-  border-left: 3px solid var(--color-sage-mid);
+  border-left: 3px solid var(--color-accent-mid);
   display: inline-block;
 }
 
@@ -1253,7 +1365,6 @@ p:last-child {
   }
 
   /* Home page grids → single column */
-  .services-teaser .container,
   .blog-preview .container {
     grid-template-columns: 1fr;
     gap: 32px;
@@ -1294,7 +1405,7 @@ p:last-child {
     left: 0;
     right: 0;
     background-color: var(--color-white);
-    border-bottom: 1px solid var(--color-sage-light);
+    border-bottom: 1px solid var(--color-accent-light);
     padding: 16px 0;
     z-index: 99;
   }
@@ -1332,6 +1443,65 @@ p:last-child {
   .nav-cta .btn {
     display: inline-block;
     margin-top: 4px;
+  }
+
+  /* Mobile dropdown toggle button */
+  .dropdown-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+    color: var(--color-charcoal-mid);
+  }
+
+  /* Parent items: relative so toggle button can be positioned */
+  .nav-item--has-children {
+    position: relative;
+  }
+
+  /* Shrink the parent link/label to leave room for the toggle button */
+  .nav-item--has-children > a,
+  .nav-item--has-children > .nav-label {
+    width: calc(100% - 44px);
+  }
+
+  .nav-label {
+    padding: 12px 0;
+  }
+
+  /* Dropdown panel — static, full-width on mobile */
+  .nav-item--has-children > .nav-dropdown {
+    display: none;
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-top: none;
+    background-color: var(--color-bg-section);
+    padding: 4px 0 12px 16px;
+    width: 100%;
+  }
+
+  .nav-item--has-children.dropdown-open > .nav-dropdown {
+    display: block;
+  }
+
+  .nav-dropdown li {
+    border-bottom: 1px solid var(--color-bg);
+  }
+
+  .nav-dropdown li:last-child {
+    border-bottom: none;
+  }
+
+  .nav-dropdown a {
+    padding: 10px 0;
+    font-size: 0.9rem;
+    color: var(--color-charcoal-mid);
   }
 
   /* Hero */
