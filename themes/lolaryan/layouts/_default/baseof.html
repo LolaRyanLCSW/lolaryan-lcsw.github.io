@@ -27,12 +27,23 @@
       <nav id="primary-nav" class="primary-nav" aria-label="Primary navigation">
         <ul class="nav-list">
           <li><a href="{{ "/about/" | relURL }}">About</a></li>
-          <li><a href="{{ "/services/" | relURL }}">Services</a></li>
+          <li class="nav-item--has-children">
+            <a href="{{ "/services/" | relURL }}">Services</a>
+            <button class="dropdown-toggle" aria-expanded="false" aria-label="Show Services submenu">&#9662;</button>
+            <ul class="nav-dropdown">
+              <li><a href="{{ "/telehealth/" | relURL }}">Telehealth</a></li>
+            </ul>
+          </li>
           <li><a href="{{ "/immigration-evaluations/" | relURL }}">Immigration Evaluations</a></li>
-          <li><a href="{{ "/fees/" | relURL }}">Fees</a></li>
-          <li><a href="{{ "/telehealth/" | relURL }}">Telehealth</a></li>
-          <li><a href="{{ "/blog/" | relURL }}">Blog</a></li>
-          <li class="nav-cta"><a href="{{ "/contact/" | relURL }}" class="btn btn-primary">Booking</a></li>
+          <li class="nav-item--has-children">
+            <span class="nav-label">Resources</span>
+            <button class="dropdown-toggle" aria-expanded="false" aria-label="Show Resources submenu">&#9662;</button>
+            <ul class="nav-dropdown">
+              <li><a href="{{ "/blog/" | relURL }}">Blog</a></li>
+            </ul>
+          </li>
+          <li><a href="{{ "/contact/" | relURL }}">Contact</a></li>
+          <li class="nav-cta"><a href="{{ "/contact/" | relURL }}" class="btn btn-primary">Book a Consultation</a></li>
         </ul>
       </nav>
     </div>
@@ -54,11 +65,10 @@
         <ul>
           <li><a href="{{ "/about/" | relURL }}">About</a></li>
           <li><a href="{{ "/services/" | relURL }}">Services</a></li>
-          <li><a href="{{ "/immigration-evaluations/" | relURL }}">Immigration Evaluations</a></li>
-          <li><a href="{{ "/fees/" | relURL }}">Fees</a></li>
           <li><a href="{{ "/telehealth/" | relURL }}">Telehealth</a></li>
+          <li><a href="{{ "/immigration-evaluations/" | relURL }}">Immigration Evaluations</a></li>
           <li><a href="{{ "/blog/" | relURL }}">Blog</a></li>
-          <li><a href="{{ "/contact/" | relURL }}">Booking</a></li>
+          <li><a href="{{ "/contact/" | relURL }}">Contact</a></li>
         </ul>
       </div>
 
@@ -85,18 +95,57 @@
 
       if (!toggle || !nav) return;
 
+      // Hamburger open/close
       toggle.addEventListener('click', function () {
         var expanded = toggle.getAttribute('aria-expanded') === 'true';
         toggle.setAttribute('aria-expanded', String(!expanded));
         nav.classList.toggle('nav-open');
       });
 
-      // Close nav when a link is clicked (mobile)
+      // Dropdown toggles (mobile click, desktop keyboard)
+      nav.querySelectorAll('.dropdown-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          var parent = btn.closest('.nav-item--has-children');
+          var isOpen = parent.classList.contains('dropdown-open');
+
+          // Close all other open dropdowns
+          nav.querySelectorAll('.nav-item--has-children.dropdown-open').forEach(function (el) {
+            if (el !== parent) {
+              el.classList.remove('dropdown-open');
+              el.querySelector('.dropdown-toggle').setAttribute('aria-expanded', 'false');
+            }
+          });
+
+          parent.classList.toggle('dropdown-open', !isOpen);
+          btn.setAttribute('aria-expanded', String(!isOpen));
+        });
+      });
+
+      // Close dropdowns and nav when a leaf link is clicked (mobile)
       nav.querySelectorAll('a').forEach(function (link) {
         link.addEventListener('click', function () {
-          toggle.setAttribute('aria-expanded', 'false');
-          nav.classList.remove('nav-open');
+          // Only close nav for non-parent links
+          if (!link.closest('.nav-item--has-children') ||
+              link.closest('.nav-dropdown')) {
+            toggle.setAttribute('aria-expanded', 'false');
+            nav.classList.remove('nav-open');
+            nav.querySelectorAll('.nav-item--has-children').forEach(function (el) {
+              el.classList.remove('dropdown-open');
+              el.querySelector('.dropdown-toggle').setAttribute('aria-expanded', 'false');
+            });
+          }
         });
+      });
+
+      // Close dropdowns when clicking outside the nav
+      document.addEventListener('click', function (e) {
+        if (!nav.contains(e.target)) {
+          nav.querySelectorAll('.nav-item--has-children.dropdown-open').forEach(function (el) {
+            el.classList.remove('dropdown-open');
+            el.querySelector('.dropdown-toggle').setAttribute('aria-expanded', 'false');
+          });
+        }
       });
     })();
   </script>
